@@ -7,7 +7,7 @@
         'ngCookies',
         'xc.indexedDB'
     ]);
-    app.config(function ($stateProvider, $urlRouterProvider, googlePlusAuthProvider, $indexedDBProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, googlePlusAuthProvider, $indexedDBProvider,$httpProvider) {
         $urlRouterProvider.otherwise('/home');
         $stateProvider.state('home', {
             url: '/home',
@@ -29,6 +29,7 @@
             objStore.createIndex('link_idx', 'link', {unique: false});
             objStore.createIndex('linkPictre_idx', 'link_picture', {unique: false});
         });
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 
     });
 

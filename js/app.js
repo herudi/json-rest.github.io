@@ -7,7 +7,7 @@
         'ngCookies',
         'xc.indexedDB'
     ]);
-    app.config(function ($stateProvider, $urlRouterProvider, googlePlusAuthProvider, $indexedDBProvider,$httpProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, googlePlusAuthProvider, $indexedDBProvider) {
         $urlRouterProvider.otherwise('/home');
         $stateProvider.state('home', {
             url: '/home',
@@ -29,8 +29,6 @@
             objStore.createIndex('link_idx', 'link', {unique: false});
             objStore.createIndex('linkPictre_idx', 'link_picture', {unique: false});
         });
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-
     });
 
     app.run(function ($rootScope, $state, ls) {
@@ -54,6 +52,7 @@
                 $http({
                     method: 'POST',
                     url: baseUrl + 'createDir',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: data
                 });
             },

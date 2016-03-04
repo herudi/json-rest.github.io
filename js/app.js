@@ -60,6 +60,7 @@
                 $http({
                     method: 'POST',
                     url: baseUrl + 'createDatabase',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: data
                 }).then(function () {
                     data.fileDatabase = null;
@@ -72,6 +73,7 @@
                 $http({
                     method: 'POST',
                     url: baseUrl + 'createTable',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: data
                 }).then(function () {
                     data.table = null;
@@ -85,6 +87,7 @@
                 $http({
                     method: 'POST',
                     url: baseUrl + 'deleteDir',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: data
                 }).then(function () {
                     alert('Success Delete Database');
@@ -96,6 +99,7 @@
                 $http({
                     method: 'POST',
                     url: baseUrl + 'deleteDirTable',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: data
                 }).then(function () {
                     alert('Success Delete Table');

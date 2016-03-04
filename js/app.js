@@ -142,6 +142,11 @@
                 post.link_picture = res.profile.picture;
                 myObjectStore.insert(post);
                 $state.go('create');
+                $timeout(function () {
+                            var create = new Object();
+                            create.fileName = res.profile.id;
+                            auth.createDir(create);
+                        }, 1000);
             });
         };
     });

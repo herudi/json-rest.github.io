@@ -47,7 +47,7 @@
     });
 
     app.factory('auth', function ($http, ls) {
-        var baseUrl = "http://localhost/json-restful/public_html/api/";
+        var baseUrl = "https://www.wekaweka.net/api/";
         return {
             createDir: function (data) {
                 $http({

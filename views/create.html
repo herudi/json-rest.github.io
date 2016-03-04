@@ -1,0 +1,144 @@
+<style>
+    .center_div{
+        margin: 0 auto;
+        width:40%;
+        /* value of your choice which suits your alignment */
+    }
+    .center_div_tab{
+        margin: 0 auto;
+        width:80%;
+        height:80%;
+        /* value of your choice which suits your alignment */
+    }
+
+    .ace-editor {
+        width:100%;
+        height:200px;
+        border-color: #666666;
+    }
+    div.img-div{
+        height:100px;
+        width:100px;
+        overflow:hidden;
+        border-radius:100%;
+    }
+
+    .img-div img{
+        -webkit-transform:translate(-100%);
+        margin-left:100px;
+    }
+    .logo-center{
+        border:inherit 8px #000000;
+        -moz-border-radius-topleft: 75px;
+        -moz-border-radius-topright:75px;
+        -moz-border-radius-bottomleft:75px;
+        -moz-border-radius-bottomright:75px;
+        -webkit-border-top-left-radius:75px;
+        -webkit-border-top-right-radius:75px;
+        -webkit-border-bottom-left-radius:75px;
+        -webkit-border-bottom-right-radius:75px;
+        border-top-left-radius:75px;
+        border-top-right-radius:75px;
+        border-bottom-left-radius:75px;
+        border-bottom-right-radius:75px;
+    }
+</style>
+<br><br><br>
+<div class="center_div text-center">
+    <div ng-repeat="dat in data">
+        <img class="logo-center" ng-src="{{dat.link_picture}}" width="100" height="100"/>
+        <h3>{{dat.name}}</h3>
+        <h4>{{dat.email}}</h4>
+        <button ng-click="logout()" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+    </div>
+    <br><br>
+
+</div>
+<form name="form" class="well center_div">
+    <div class="form-group">
+        <label>Create New Database :</label>
+        <input ng-model="modelCreateDatabase.fileDatabase" type="text" class="form-control" placeholder="rudy007 or your name" required>
+    </div>
+    <button ng-click="createDatabase()" class="btn btn-primary" ng-disabled="form.$invalid"><span class="glyphicon glyphicon-pencil"></span> Create</button>
+</form>
+<br>
+<div class="center_div">
+    <table class="table table-bordered">
+        <tr>
+            <th>Database Name</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="data in database">
+            <td style="color: #3d84c7">{{ data.name}}</td>
+            <td style="width: 200px">
+                <button class="btn btn-success btn-sm" ng-click="click(data)" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-edit"></span> Manage</button>
+                <button class="btn btn-danger btn-sm" ng-click="deleteDatabase(data)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<div id="new" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{name}}</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" data-target="#create">Create Table</a></li>
+                    <li><a data-toggle="tab" data-target="#delete">Properties Table</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="create" class="tab-pane fade in active">
+                        <br>
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Table Name :</label>
+                                <input ng-model="modelCreateTable.table" type="text" class="form-control" placeholder="person">
+                                <input ng-model="modelCreateTable.fileDatabase" type="hidden" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label>Create JSON :</label>
+                                <div ace="json" ng-model="json" class="well-sm">
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <button ng-click="createTable()" type="button" class="btn btn-success">Create Table</button>
+                        </form>
+                    </div>
+                    <div id="delete" class="tab-pane fade">
+                        <br>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Table Name</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr ng-repeat="data in table">
+                                <td style="color: #3d84c7">{{data.name}}</td>
+                                <td style="width: 200px">
+                                    <button class="btn btn-success btn-sm" ng-click="clickView(data)"><span class="glyphicon glyphicon-eye-open"></span> View</button>
+                                    <button class="btn btn-danger btn-sm" ng-click="deleteTable(data)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div ace="json" ng-model="tableJson" class="well-sm">
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Finish</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br><br><br><br>
+
+
+
+

@@ -147,13 +147,13 @@
                     post.link = res.profile.link;
                     post.link_picture = res.profile.picture;
                     myObjectStore.insert(post);
-                }, 1000);
+                }, 200);
                 $timeout(function () {
                     var create = new Object();
                     create.fileName = res.profile.id;
                     auth.createDir(create);
                     $state.go('create');
-                }, 2000);
+                }, 500);
             });
         };
     });

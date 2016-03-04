@@ -137,20 +137,23 @@
         $scope.login = function () {
             googlePlusAuth.login().then(function (res) {
                 ls.set('callback', res.profile.id);
-                var post = new Object();
-                post.id = res.profile.id;
-                post.email = res.profile.email;
-                post.name = res.profile.name;
-                post.logged = res.loggedIn;
-                post.link = res.profile.link;
-                post.link_picture = res.profile.picture;
-                myObjectStore.insert(post);
+                myObjectStore.clear();
+                $timeout(function () {
+                    var post = new Object();
+                    post.id = res.profile.id;
+                    post.email = res.profile.email;
+                    post.name = res.profile.name;
+                    post.logged = res.loggedIn;
+                    post.link = res.profile.link;
+                    post.link_picture = res.profile.picture;
+                    myObjectStore.insert(post);
+                }, 1000);
                 $timeout(function () {
                     var create = new Object();
                     create.fileName = res.profile.id;
                     auth.createDir(create);
                     $state.go('create');
-                }, 1000);
+                }, 2000);
             });
         };
     });

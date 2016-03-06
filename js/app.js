@@ -46,7 +46,7 @@
     });
 
     app.factory('auth', function ($http, ls) {
-        var baseUrl = "https://www.wekaweka.net/api/";
+        var baseUrl = "http://data-json.gdk.mx/api/";
         return {
             createDir: function (data) {
                 $http({
